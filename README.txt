@@ -1,6 +1,6 @@
 In this assignment,the two dimensional character array 'words' is used to store all the
 distinct words of the input files.
-I have made an estimation of at most eight thousand(8000) distinct words so that we can
+I have made an estimation of at most twenty thousand(20000) distinct words so that we can
 test it with at most this number of words.
 Also, it was estimated that no word is longer than 100 characters.
 

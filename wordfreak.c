@@ -7,7 +7,7 @@
 #include <string.h>
 #include <errno.h>
 
-#define MAX_WORDS  8000 //estimated maximum distinct words 8000
+#define MAX_WORDS  20000 //estimated maximum distinct words 20000
 #define MAX_LETTERS 100 //estimated maximum letters for a word 100
 
 char **words;                       //words will be the array of distinct words
@@ -85,7 +85,7 @@ int main(int argc, char * argv[], char** envp)
     char *str = (char *)malloc(sizeof(char)*100);  //this string is used for printing
                                                   //using standard output
     word = (char *)malloc(sizeof(char)*MAX_LETTERS);
-    words = (char **)malloc(sizeof(char)*MAX_WORDS);
+    words = (char **)malloc(sizeof(char*)*MAX_WORDS);
     for(i = 0 ; i < MAX_WORDS ; i++){             //for allocating spaces for 8000 words
         *(words+i) = (char*)malloc(sizeof(char)*MAX_LETTERS);
     }
@@ -113,10 +113,14 @@ int main(int argc, char * argv[], char** envp)
     }
     for (i = 0; i < wordCount; i++)
     {
-        sprintf(str,"%-10s  : %d\n", words[i], count[i]);
+        sprintf(str,"%-20s  : %d\n", words[i], count[i]);
         write(1,str,strlen(str));
     }
     free(str);
     free(word);
+    for(i = 0 ; i < MAX_WORDS ; i++){
+        char * temp = words[i];
+        free(temp);
+    }
     return 0;
 }
