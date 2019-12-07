@@ -7,8 +7,8 @@
 #include <string.h>
 #include <errno.h>
 
-#define MAX_WORDS  20000 //estimated maximum distinct words 20000
-#define MAX_LETTERS 100 //estimated maximum letters for a word 100
+#define MAX_WORDS  60000 //estimated maximum distinct words 60000
+#define MAX_LETTERS 100  //estimated maximum letters for a word 100
 
 char **words;                       //words will be the array of distinct words
 char *word;                         //word will be used to the current word
@@ -41,7 +41,7 @@ void word_freak(char * filePath){
                 scanning = 1;
                 word[itr++] = (*c+32);
             }
-            else if(*c >= 'a' && *c <= 'z'){
+            else if((*c >= 'a' && *c <= 'z')){
                 scanning = 1;
                 word[itr++] = *c;
             }
@@ -78,7 +78,7 @@ void word_freak(char * filePath){
 }
 
 
-int main(int argc, char * argv[], char** envp)
+int main(int argc, char * argv[])
 {
 
     int i;
@@ -116,6 +116,7 @@ int main(int argc, char * argv[], char** envp)
         sprintf(str,"%-20s  : %d\n", words[i], count[i]);
         write(1,str,strlen(str));
     }
+    printf("Wordcount : %d\n",wordCount);
     free(str);
     free(word);
     for(i = 0 ; i < MAX_WORDS ; i++){
